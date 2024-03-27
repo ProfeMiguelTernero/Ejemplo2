@@ -59,6 +59,14 @@ app.get('/registro',(req, res) => {
     res.render('registro');
 });
 
+app.get('/comentarios',(req, res) => {
+    res.render('comentarios',{ username: req.session.username });
+});
+
+app.get('/publicaciones',(req, res) => {
+    res.render('publicaciones',{ username: req.session.username });
+});
+
 app.get('/perfil',(req, res) => {
     const username = req.session.username;
     // Consulta SQL para obtener los datos del perfil del usuario
@@ -73,7 +81,7 @@ app.get('/perfil',(req, res) => {
         // Comprobar si se encontraron resultados
         if (results.length > 0) {
             // Renderizar la plantilla 'perfil' con los datos del usuario
-            //res.render('perfil', { username: req.session.username });
+            //console.log(results[0].fecha_nacimiento); 
             res.render('perfil', { username, usuario: results[0] });
         } else {
             res.status(404).send('Usuario no encontrado');
