@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/socicon/css/styles.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=Wf9Ojj"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=Wf9Ojj" type="text/css">
+  
+</head>
+<body>
+    <!-- Llamada al menu -->
+    <section data-bs-version="5.1" class="menu menu2 cid-u6ZF78ROEn" once="menu" id="menu-5-u6ZF78ROEn">
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="/dashboard">
+                            <img src="assets/images/mbr-206x191.png" alt="Mobirise Website Builder" style="height: 4.3rem;">
+                        </a>
+                    </span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4" href="/dashboard">socialTernero</a></span>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="/perfil">Mi perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="empleados.html">Ver mis comentarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="empleados.html">Publicaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="/logout" aria-expanded="false">logout, <%= username %></a>
+                        </li>
+                    </ul>
+    
+                </div>
+            </div>
+        </nav>
+    </section>
+    <br>
+
+    <!-- Llamada al menu -->
+    <section data-bs-version="5.1" class="people07 cid-u7G9MjbGh4" id="people07-d">
+        <p class="card-title mbr-fonts-style mt-3 display-7 justify-content-right">
+
+            <div class="img-wrapper mt-4 justify-content-center">
+                <strong>Perfil de <%= usuario.nombre %></strong>
+             <!--   <img src="/imagen/<%= usuario.id %>" alt="Foto de perfil">-->
+            </div>
+            <div class="img-wrapper mt-4 justify-content-center">
+              <!--  <strong>Perfil de <%= usuario.nombre %></strong>-->
+                <img src="/imagen/<%= usuario.id %>" alt="Foto de perfil"> 
+            </div>
+
+        </p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-8">
+ 
+<!--                    <div class="img-wrapper mt-4 justify-content-right">
+                        <img src="/imagen/<%= usuario.id %>" alt="Foto de perfil">
+                    </div>-->
+
+                    <form action="/modifica_foto" method="post" enctype="multipart/form-data">
+                        <input type="file" name="image"  accept="image/*">
+                        <input type="submit" value="Modifica foto" name="submit">
+                    </form>
+                    <form action="/modifica_perfil" method="post" enctype="multipart/form-data">
+
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="<%= usuario.nombre %>" required>
+                        <br>
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" value="<%= usuario.apellido %>" required>
+                        <br>
+                        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="<%= usuario.fecha_nacimiento %>" required>
+                        <br>
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" value="<%= usuario.telefono %>">
+                        <br>
+                        <input type="submit" value="Actualizar">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-bs-version="5.1" class="start article05 cid-u70DuSHgbr" >
+        <div class="container">
+            <div class="row">
+                <div class="row-links">
+
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="image" accept="image/*">
+                        <input type="submit" value="Subir imagen" name="submit">
+                    </form>
+
+                  </div>
+    
+                
+            </div>
+        </div>
+    </section>
+    <section data-bs-version="5.1" class="footer3 cid-u6ZF78TESB" once="footers" id="footer-6-u6ZF78TESB">
+        <div class="container">
+            <div class="row">
+                <div class="row-links">
+                    <ul class="header-menu">
+    
+                    <li class="header-menu-item mbr-fonts-style display-5">
+                        <a href="#" class="text-white">Inicio</a>
+                      </li><li class="header-menu-item mbr-fonts-style display-5">
+                        <a href="#" class="text-white">Acerca</a>
+                      </li><li class="header-menu-item mbr-fonts-style display-5">
+                        <a href="#" class="text-white">Contacto</a>
+                      </li><li class="header-menu-item mbr-fonts-style display-5">
+                        <a href="#" class="text-white">Términos</a>
+                      </li></ul>
+                  </div>
+    
+                
+                <div class="col-12 mt-4">
+                    <p class="mbr-fonts-style copyright display-7">© 2024 socialTernero. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+        <!-- Script tags from second document -->
+        <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/smoothscroll/smooth-scroll.js"></script>
+        <script src="assets/ytplayer/index.js"></script>
+        <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+        <script src="assets/vimeoplayer/player.js"></script>
+        <script src="assets/masonry/masonry.pkgd.min.js"></script>
+        <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/theme/js/script.js"></script>
+</body>
+</html>
