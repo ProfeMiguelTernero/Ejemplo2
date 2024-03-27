@@ -73,6 +73,9 @@
                         <input type="file" name="image"  accept="image/*">
                         <input type="submit" value="Modifica foto" name="submit">
                     </form>
+                    <% if (mensaje) { %>
+                        <p class="alert alert-danger"><%= mensaje %></p>
+                    <% } %>
                     <form action="/modifica_perfil" method="post" enctype="multipart/form-data">
 
                         <label for="nombre">Nombre:</label>

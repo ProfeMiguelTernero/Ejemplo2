@@ -69,6 +69,7 @@ app.get('/publicaciones',(req, res) => {
 
 app.get('/perfil',(req, res) => {
     const username = req.session.username;
+    const mensaje = req.query.mensaje;
     // Consulta SQL para obtener los datos del perfil del usuario
     const sql = 'SELECT * FROM usuarios WHERE username = ?';
     connection.query(sql, [username], (err, results) => {
@@ -82,7 +83,7 @@ app.get('/perfil',(req, res) => {
         if (results.length > 0) {
             // Renderizar la plantilla 'perfil' con los datos del usuario
             //console.log(results[0].fecha_nacimiento); 
-            res.render('perfil', { username, usuario: results[0] });
+            res.render('perfil', { username, usuario: results[0], mensaje});
         } else {
             res.status(404).send('Usuario no encontrado');
         }
@@ -110,12 +111,13 @@ app.post('/register', async (req, res) => {
 
 // Ruta para servir la imagen de perfil
 app.get('/imagen/:id', (req, res) => {
-    const userId = req.params.id;
+    //const userId = req.params.id;
+    const username = req.session.username;
 
     // Consulta SQL para obtener la imagen de perfil del usuario
-    const sql = 'SELECT foto_perfil FROM usuarios WHERE id = ?';
+    const sql = 'SELECT foto_perfil FROM usuarios WHERE username = ?';
 
-    connection.query(sql, [userId], (err, results) => {
+    connection.query(sql, [username], (err, results) => {
         if (err) {
             console.error('Error al obtener imagen de perfil:', err);
             res.status(500).send('Error al obtener imagen de perfil');
@@ -148,11 +150,10 @@ app.post('/modifica_foto',upload.single('image'), async (req, res) => {
     const username = req.session.username;
     const image = req.file;
     if (!image) {
-        res.status(400).send('No se proporcionó ninguna imagen.');
+        res.redirect('/perfil?mensaje=' + encodeURIComponent('Error al obtener imagen de perfil'));
         return;
     }
 
-    console.log(username+image);
     // Actualizar la foto de perfil del usuario en la base de datos
     const updateQuery = 'UPDATE usuarios SET foto_perfil = ? WHERE username = ?';
     const values = [image.buffer, username];
@@ -160,17 +161,12 @@ app.post('/modifica_foto',upload.single('image'), async (req, res) => {
     // Ejecutar la consulta UPDATE
     connection.query(updateQuery, values, function(error, results, fields) {
         if (error) {
-            console.error('Error al actualizar la foto de perfil:', error);
-            res.status(500).send('Error al actualizar la foto de perfil');
+            res.redirect('/perfil?mensaje=' + encodeURIComponent('Error al actualizar la foto de perfil'));
             return;
         }
         
-        console.log('Foto de perfil actualizada correctamente');
-        // Enviar una respuesta al cliente
         res.redirect('perfil');
-        //res.render('perfil', { username});
-       // res.render('perfil');
-        //res.render('index', { mensaje: 'Foto de perfil actualizada' });
+
     });
 
 });
