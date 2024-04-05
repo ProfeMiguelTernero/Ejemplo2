@@ -32,4 +32,4 @@ npm install
 
 4º ejecutar el proyecto
 ################################################################
-node --watch scrpt.js
+node --watch script.js
